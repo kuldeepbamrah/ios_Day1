@@ -23,11 +23,32 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //emailField = (UserDefaults.standard.value(forKey: "email") as! UITextField)
+        //passField = (UserDefaults.standard.value(forKey: "pass") as! UITextField)
+        //print(emailField)
+        
     }
 
+    @IBAction func RemeberMe(_ sender: UISwitch)
+    {
+        if rememberMeButton.isOn
+        {
+            let email1 = emailField.text!
+            let passtemp1 = passField.text!
+            UserDefaults.standard.set(email1, forKey: "email")
+            UserDefaults.standard.set(passtemp1, forKey: "pass")
+            
+        }
+        
+    
+    }
     
     @IBAction func logInButton( _ sender : UIButton)
     {
+        
+        let emailtemp = emailField.text!
+        if emailtemp.count > 10
+        {
         let pass = passField.text!
         let email = emailField.text!
         if email == "kuldeep@gmail.com"
@@ -35,13 +56,34 @@ class ViewController: UIViewController {
             if pass == "1234"
             {
                 print("Login Success")
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                let homeVC = sb.instantiateViewController(withIdentifier: "homeVC") as! WelcomeViewController
+                homeVC.name = "Hello"
+                //        self.present(homeVC, animated: true, completion: nil)
+                navigationController?.pushViewController(homeVC, animated: true)
             }else{
             print("Incorrect Password")
             }
             }else{
             print("Incorrect Email")
         }
+            
 
+        } else{
+            let alert = UIAlertController(title: "Email Error", message: "Your Email is less than 10 charachter. Please enter a valid email", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Ignore", style: .destructive, handler: nil))
+            
+            self.present(alert, animated: true)
+
+        }
+    
+    
+
+    
+    
+    
 }
-
 }
