@@ -23,9 +23,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //emailField = (UserDefaults.standard.value(forKey: "email") as! UITextField)
-        //passField = (UserDefaults.standard.value(forKey: "pass") as! UITextField)
-        //print(emailField)
+        emailField.text = UserDefaults.standard.string(forKey: "email")
+        passField.text = UserDefaults.standard.string(forKey: "pass")   
+        
         
     }
 
@@ -56,11 +56,12 @@ class ViewController: UIViewController {
             if pass == "1234"
             {
                 print("Login Success")
-                let sb = UIStoryboard(name: "Main", bundle: nil)
-                let homeVC = sb.instantiateViewController(withIdentifier: "homeVC") as! WelcomeViewController
-                homeVC.name = "Hello"
+                print(UserDefaults.standard.value(forKey: "email"))
+                //let sb = UIStoryboard(name: "Main", bundle: nil)
+                //let homeVC = sb.instantiateViewController(withIdentifier: "homeVC") as! WelcomeViewController
+                //homeVC.name = "Hello"
                 //        self.present(homeVC, animated: true, completion: nil)
-                navigationController?.pushViewController(homeVC, animated: true)
+                //navigationController?.pushViewController(homeVC, animated: true)
             }else{
             print("Incorrect Password")
             }
