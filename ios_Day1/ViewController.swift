@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         emailField.text = UserDefaults.standard.string(forKey: "email")
         passField.text = UserDefaults.standard.string(forKey: "pass")   
         
+        rememberMeButton.isOn = true
         
     }
 
@@ -56,7 +57,6 @@ class ViewController: UIViewController {
             if pass == "1234"
             {
                 print("Login Success")
-                print(UserDefaults.standard.value(forKey: "email"))
                 //let sb = UIStoryboard(name: "Main", bundle: nil)
                 //let homeVC = sb.instantiateViewController(withIdentifier: "homeVC") as! WelcomeViewController
                 //homeVC.name = "Hello"
